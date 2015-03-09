@@ -31,7 +31,7 @@ paths =
 
 gulp.task "clean", () ->
   gulp.src paths.test.root, read: false
-    .pipe clean()
+    .pipe plugins.clean()
 
 gulp.task "jade", () ->
   gulp.src paths.jade
@@ -84,7 +84,7 @@ gulp.task "watch", () ->
 
 gulp.task "cleanDistro", () ->
   gulp.src paths.distro.root, read: false
-    .pipe clean()
+    .pipe plugins.clean()
 
 gulp.task "jadeDistro", () ->
   gulp.src paths.jade
@@ -120,3 +120,6 @@ gulp.task "cjsxDistro", () ->
 
 gulp.task "build", () ->
   runSequence "cleanDistro", ["jadeDistro", "lessDistro", "coffeeDistro","coffeeLibDistro", "cjsxDistro", "imagesDistro"]
+
+gulp.task "default", () ->
+  runSequence "clean", ["jade", "less", "coffee","coffeeLib", "cjsx", "images"]
