@@ -1,14 +1,33 @@
+// Colors
+@s-brown: #bf8a49;
+@s-brown-dark: #73603d;
+@s-brown-light: #f2ca80;
+@s-grey: #5e5a59;
+@s-black: #0D0D0D;
+@s-white: #fefefe;
+
+// Variables
+@s-background: @s-brown-light;
+@s-heading: @s-grey;
+@s-text: @s-black;
+@s-border: @s-brown-dark;
+@s-hover: @s-brown;
+@s-hover-text: @s-white;
+@s-border-highlight: @s-grey;
+
 * {
   box-sizing: border-box;
 }
 
 html {
   font-family: Helvetica;
+  background-color: @s-background;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 4rem;
+  color: @s-heading;
 }
 
 #app-box {
@@ -18,20 +37,20 @@ h1 {
 
   div.container {
     margin: 2rem;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid @s-border;
+    border-bottom: 1px solid @s-border;
     div.to-do{
       width: 100%;
-      background-color: #fefefe;
-      border-top: 1px solid #eee;
-      border-bottom: 1px solid #eee;
+      border-top: 1px solid @s-border;
+      border-bottom: 1px solid @s-border;
       line-height: 2rem;
       text-align: left;
       padding: 0 2rem;
       &:hover {
-        background-color: #fdfdfd;
-        border-top: 1px solid #999;
-        border-bottom: 1px solid #999;
+        background-color: @s-hover;
+        color: @s-hover-text;
+        border-top: 1px solid @s-border-highlight;
+        border-bottom: 1px solid @s-border-highlight;
       }
     }
   }
@@ -46,7 +65,8 @@ h1 {
       line-height: 3rem;
       font-size: 1rem;
       border-radius: 5px;
-      border: 1px solid #ccc;
+      border: 1px solid @s-border;
+      background-color: fade(@s-white, 10%);
       width: 30rem;
     }
     button {
@@ -57,10 +77,14 @@ h1 {
       height: 3rem;
       line-height: 3rem;
       border-radius: 5px;
-      background-color: #fff;
-      border: 1px solid #339966;
+      background-color: @s-background;
+      border: 1px solid @s-border-highlight;
       font-size: 1rem;
-      color: #339966;
+      color: @s-heading;
+      &:hover {
+        background-color: @s-hover;
+        color: @s-hover-text;
+      }
     }
   }
 }
