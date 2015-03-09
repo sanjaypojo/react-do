@@ -28,21 +28,20 @@ ToDoList = React.createClass(
     for item in @props.data
       allToDos.push <ToDoItem data={item} />
     return(
-      <ul>
+      <div className="container">
         {allToDos}
-      </ul>
+      </div>
     )
 )
 
 ToDoItem = React.createClass(
   render: () ->
-    <li>{@props.data}</li>
+    <div className="to-do">{@props.data}</div>
 )
 
 NewToDo = React.createClass(
   onSubmitToDo: (e) ->
     e.preventDefault()
-    console.log "Yo yo yo yo"
     newToDo = @refs.newToDo.getDOMNode().value.trim()
     if newToDo
       @props.addToDo(newToDo)
