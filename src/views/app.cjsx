@@ -1,17 +1,14 @@
-food = [
-  "Code",
-  "Code Review",
-  "Eat a cookie"
-]
-
 ToDoFrame = React.createClass(
   toDoData: []
   getInitialState: () ->
+    @toDoData = JSON.parse @props.data
     data: @toDoData
   componentDidMount: () ->
     @setState data: @toDoData
   addToDo: (item) ->
     @toDoData.push item
+    that = this
+    localStorage.setItem "coreToDoData", JSON.stringify(that.toDoData)
     @setState data: @toDoData
   render: () ->
     return (
@@ -53,6 +50,6 @@ NewToDo = React.createClass(
 )
 
 React.render(
-  <ToDoFrame data={food} />,
+  <ToDoFrame data={localStorage.getItem "coreToDoData"} />,
   document.getElementById "app-box"
 )
