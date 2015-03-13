@@ -2,6 +2,11 @@ gulp = require "gulp"
 plugins = require("gulp-load-plugins")()
 runSequence = require("run-sequence")
 
+gulpError = (err) ->
+  console.log err
+  plugins.util.beep()
+  @emit "done"
+
 # Paths
 paths =
   distro:
@@ -35,18 +40,21 @@ gulp.task "clean", () ->
 
 gulp.task "jade", () ->
   gulp.src paths.jade
+    .pipe plugins.plumber(errorHandler: gulpError)
     .pipe plugins.jade()
     .on "error", plugins.util.log
     .pipe gulp.dest paths.test.root
 
 gulp.task "less", () ->
   gulp.src paths.less
+    .pipe plugins.plumber(errorHandler: gulpError)
     .pipe plugins.less()
     .on "error", plugins.util.log
     .pipe gulp.dest paths.test.css
 
 gulp.task "coffee", () ->
   gulp.src paths.coffee
+    .pipe plugins.plumber(errorHandler: gulpError)
     .pipe plugins.sourcemaps.init()
     .pipe plugins.coffee()
     .on "error", plugins.util.log
@@ -55,11 +63,13 @@ gulp.task "coffee", () ->
 
 gulp.task "images", () ->
   return gulp.src paths.images
+    .pipe plugins.plumber(errorHandler: gulpError)
     .pipe plugins.imagemin()
     .pipe gulp.dest(paths.test.images)
 
 gulp.task "coffeeLib", () ->
   gulp.src paths.coffeeLib
+    .pipe plugins.plumber(errorHandler: gulpError)
     .pipe plugins.sourcemaps.init()
     .pipe plugins.coffee(bare: true)
     .on "error", plugins.util.log
@@ -68,6 +78,7 @@ gulp.task "coffeeLib", () ->
 
 gulp.task "cjsx", () ->
   gulp.src paths.cjsx
+    .pipe plugins.plumber(errorHandler: gulpError)
     .pipe plugins.sourcemaps.init()
     .pipe plugins.cjsx(bare: true)
     .on "error", plugins.util.log
