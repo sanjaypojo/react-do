@@ -2,7 +2,12 @@ ToDoFrame = React.createClass(
   toDoData: {}
   getInitialState: () ->
     @toDoData = JSON.parse @props.data
-    if !@toDoData then @toDoData = {}
+    if !@toDoData
+      @toDoData = {}
+    else
+      for key, value of @toDoData
+        if !value.active
+          delete @toDoData[key]
     data: @toDoData
   componentDidMount: () ->
     @setState data: @toDoData
