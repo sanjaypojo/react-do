@@ -44,7 +44,7 @@ ToDoList = React.createClass(
     for guid, value of @props.data
       console.log guid
       if value.active
-        allToDos.push <ToDoItem data={value} guid={guid} removeToDo={@props.removeToDo}/>
+        allToDos.push <ToDoItem data={value} guid={guid} key={guid} removeToDo={@props.removeToDo}/>
     return(
       <div className="container">
         {allToDos}
