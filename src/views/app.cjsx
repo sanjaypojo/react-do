@@ -22,7 +22,6 @@ ToDoFrame = React.createClass(
       localStorage.setItem "coreToDoData", JSON.stringify(that.toDoData)
       that.setState data: that.toDoData
     else
-      console.log "Missing key #{key}"
       console.log @toDoData
   render: () ->
     return (
@@ -60,18 +59,21 @@ ToDoItem = React.createClass(
 )
 
 NewToDo = React.createClass(
+  getInitialState: () ->
+    return {text: "", active: true}
+  onInputChange: (e) ->
+    @setState {text: e.target.value, active: true}
   onSubmitToDo: (e) ->
+    console.log e
     e.preventDefault()
-    newToDo =
-      text: @refs.newToDo.getDOMNode().value.trim()
-      active: true
-    if newToDo
+    newToDo = @state
+    if newToDo.text
       @props.addToDo(newToDo)
-      # @refs.newToDo.getDOMNode.value ""
+      @setState {text: "", active: true}
   render: () ->
     <div className="form-container">
       <form onSubmit={@onSubmitToDo}>
-        <input type="text" ref="newToDo" autoComplete="off" />
+        <input type="text" ref="newToDo" onChange={@onInputChange} value={@state.text} />
         <button type="submit"> Add </button>
       </form>
     </div>
