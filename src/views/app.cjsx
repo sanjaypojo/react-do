@@ -14,6 +14,7 @@ ToDoFrame = React.createClass(
     return (
       <div>
         <ToDoList data={@state.data}/>
+        <h1>React.Do</h1>
         <NewToDo addToDo={@addToDo}/>
       </div>
     )
@@ -43,10 +44,12 @@ NewToDo = React.createClass(
     if newToDo
       @props.addToDo(newToDo)
   render: () ->
-    <form onSubmit={@onSubmitToDo}>
-      <input type="text" ref="newToDo"></input>
-      <button type="submit"> Add </button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={@onSubmitToDo}>
+        <input type="text" ref="newToDo" autoComplete="off" />
+        <button type="submit"> Add </button>
+      </form>
+    </div>
 )
 
 React.render(

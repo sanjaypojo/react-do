@@ -1,40 +1,55 @@
-// Colors
-@s-brown: #bf8a49;
-@s-brown-dark: #73603d;
-@s-brown-light: #f2ca80;
-@s-grey: #5e5a59;
-@s-black: #0D0D0D;
-@s-white: #fefefe;
+// Theme 1
+@s-1-brown: #bf8a49;
+@s-1-brown-dark: #73603d;
+@s-1-brown-light: #f2ca80;
+@s-1-grey: #5e5a59;
+@s-1-black: #0D0D0D;
+@s-1-white: #fefefe;
+
+// Theme 2
+@s-2-blue-dark: #00475b;
+@s-2-blue-light: #328ea8;
+@s-2-grey: #236375;
+@s-2-white: #eaeaea;
 
 // Variables
-@s-background: @s-brown-light;
-@s-heading: @s-grey;
-@s-text: @s-black;
-@s-border: @s-brown-dark;
-@s-hover: @s-brown;
-@s-hover-text: @s-white;
-@s-border-highlight: @s-grey;
+@s-heading: @s-2-blue-dark;
+@s-text: @s-2-blue-dark;
+@s-hover-text: @s-2-white;
+@s-hover-background: @s-2-blue-light;
+@s-input-background: fade(@s-2-white, 25%);
+@s-button-hover-background: lighten(@s-2-blue-light, 10%);
+@s-appbox-tint: fade(@s-2-white, 20%);
+@s-background: transparent;
+@s-border: fade(@s-2-grey, 50%);
+@s-border-highlight: @s-2-grey;
+
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
 
 * {
   box-sizing: border-box;
 }
 
 html {
-  font-family: Helvetica;
+  font-family: "Montserrat", Helvetica, sans-serif;
   background-color: @s-background;
+  color: @s-text;
   background-image: url("../images/background.jpg");
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 4rem;
-  color: @s-heading;
 }
 
 #app-box {
   text-align: center;
   max-width: 40rem;
-  margin: 0 auto;
+  margin: 2rem auto;
+  background-color: @s-appbox-tint;
+  padding: 2rem;
+  border-radius: 5px;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 4rem;
+    color: @s-heading;
+  }
 
   div.container {
     margin: 2rem;
@@ -48,43 +63,49 @@ h1 {
       text-align: left;
       padding: 0 2rem;
       &:hover {
-        background-color: @s-hover;
+        background-color: @s-hover-background;
         color: @s-hover-text;
         border-top: 1px solid @s-border-highlight;
         border-bottom: 1px solid @s-border-highlight;
       }
     }
   }
-  form {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    input {
-      margin: 0;
-      padding: 0 1rem;
-      height: 3rem;
-      line-height: 3rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: 1px solid @s-border;
-      background-color: fade(@s-white, 10%);
-      width: 30rem;
-    }
-    button {
-      margin: 0;
-      padding: 0 1rem;
-      margin-left: 1rem;
+  div.form-container {
+    margin: 2rem;
+    form {
+      display: inline-block;
+      width: 100%;
       text-align: center;
-      height: 3rem;
-      line-height: 3rem;
-      border-radius: 5px;
-      background-color: @s-background;
-      border: 1px solid @s-border-highlight;
-      font-size: 1rem;
-      color: @s-heading;
-      &:hover {
-        background-color: @s-hover;
+      input {
+        font-family: "Montserrat", Helvetica, sans-serif;
+        color: @s-text;
+        width: 85%;
+        margin: 0;
+        padding: 0 2rem;
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid @s-border;
+        background-color: @s-input-background;
+      }
+      button {
+        width: 13%;
+        margin: 0;
+        margin-left: 2%;
+        padding: 0 1rem;
+        text-align: center;
+        height: 3rem;
+        line-height: 3rem;
+        border-radius: 5px;
+        background-color: @s-hover-background;
+        border: 1px solid @s-border-highlight;
+        font-size: 1rem;
         color: @s-hover-text;
+        &:hover {
+          background-color: @s-button-hover-background;
+          color: @s-hover-text;
+        }
       }
     }
   }
