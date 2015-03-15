@@ -15,6 +15,7 @@ paths =
     js: "distro/js/"
     images: "distro/images/"
     lib: "distro/lib/"
+    all: "distro/**"
   test:
     root: "test/"
     css: "test/css/"
@@ -134,3 +135,13 @@ gulp.task "build", () ->
 
 gulp.task "default", () ->
   runSequence "clean", ["jade", "less", "coffee","coffeeLib", "cjsx", "images"]
+
+gulp.task "deploy", () ->
+  gulp.src(paths.distro.all)
+    .pipe plugins.rsync(
+      root: "distro"
+      hostname: "sanjaypojo.com"
+      destination: "~/react-do/production/"
+      incremental: true
+      
+    )
