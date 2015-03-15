@@ -34,6 +34,7 @@ paths =
   images: "src/images/*.*"
   coffeeLib: "src/lib/*.coffee"
   cjsx: "src/views/*.cjsx"
+  lib: ["node_modules/react/dist/react.js"]
 
 gulp.task "clean", () ->
   gulp.src paths.test.root, read: false
@@ -86,6 +87,10 @@ gulp.task "cjsx", () ->
     .pipe plugins.sourcemaps.write()
     .pipe gulp.dest paths.test.js
 
+gulp.task "lib", () ->
+  gulp.src paths.lib
+    .pipe gulp.dest paths.test.lib
+
 gulp.task "watch", () ->
   gulp.watch paths.watch.jade, ["jade"]
   gulp.watch paths.watch.less, ["less"]
@@ -130,11 +135,16 @@ gulp.task "cjsxDistro", () ->
     .pipe plugins.cjsx()
     .pipe gulp.dest paths.distro.js
 
+gulp.task "libDistro", () ->
+  gulp.src paths.lib
+    .pipe plugins.uglify()
+    .pipe gulp.dest paths.distro.lib
+
 gulp.task "build", () ->
-  runSequence "cleanDistro", ["jadeDistro", "lessDistro", "coffeeDistro","coffeeLibDistro", "cjsxDistro", "imagesDistro"]
+  runSequence "cleanDistro", ["jadeDistro", "lessDistro", "coffeeDistro","coffeeLibDistro", "cjsxDistro", "imagesDistro", "libDistro"]
 
 gulp.task "default", () ->
-  runSequence "clean", ["jade", "less", "coffee","coffeeLib", "cjsx", "images"]
+  runSequence "clean", ["jade", "less", "coffee","coffeeLib", "cjsx", "images", "lib"]
 
 gulp.task "deploy", () ->
   gulp.src(paths.distro.all)
