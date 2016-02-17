@@ -12,17 +12,23 @@
 @s-2-grey: #236375;
 @s-2-white: #eaeaea;
 
+// Theme 3
+@s-3-black-dark: #fff;
+@s-3-black-light: #ccc;
+@s-3-gray: #ccc;
+@s-3-white: #000;
+
 // Variables
-@s-heading: @s-2-blue-dark;
-@s-text: @s-2-blue-dark;
-@s-hover-text: @s-2-white;
-@s-hover-background: @s-2-blue-light;
-@s-input-background: fade(@s-2-white, 25%);
-@s-button-hover-background: lighten(@s-2-blue-light, 10%);
-@s-appbox-tint: fade(@s-2-white, 40%);
+@s-heading: @s-3-black-dark;
+@s-text: @s-3-black-dark;
+@s-hover-text: @s-3-white;
+@s-hover-background: @s-3-black-light;
+@s-input-background: fade(@s-3-white, 25%);
+@s-button-hover-background: lighten(@s-3-black-light, 10%);
+@s-appbox-tint: fade(@s-3-white, 40%);
 @s-background: transparent;
-@s-border: fade(@s-2-grey, 50%);
-@s-border-highlight: @s-2-grey;
+@s-border: fade(@s-3-gray, 50%);
+@s-border-highlight: @s-3-gray;
 
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
 
@@ -34,7 +40,10 @@ html {
   font-family: "Montserrat", Helvetica, sans-serif;
   background-color: @s-background;
   color: @s-text;
-  background-image: url("../images/background.jpg");
+  background-image: url("https://source.unsplash.com/user/sanjaypojo/likes/1600x900");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100%;
 }
 
 #app-box {
@@ -46,7 +55,6 @@ html {
   @media(max-width: 480px) {
     padding: 2rem 0;
   }
-  border-radius: 5px;
 
   h1 {
     text-align: center;
@@ -97,7 +105,6 @@ html {
         height: 3rem;
         line-height: 3rem;
         font-size: 1rem;
-        border-radius: 5px;
         border: 1px solid @s-border;
         background-color: @s-input-background;
         @media(max-width: 480px) {
@@ -112,7 +119,6 @@ html {
         text-align: center;
         height: 3rem;
         line-height: 3rem;
-        border-radius: 5px;
         background-color: @s-hover-background;
         border: 1px solid @s-border-highlight;
         font-size: 1rem;
